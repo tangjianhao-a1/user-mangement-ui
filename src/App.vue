@@ -95,7 +95,7 @@ export default {
         .delete("http://81.68.177.149:8080/userInfo/delete?id=" + id)
         .then(() => {
           this.queryData();
-        })
+        });
     },
   },
 };
