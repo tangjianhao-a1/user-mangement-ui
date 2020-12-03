@@ -107,11 +107,9 @@ export default {
   },
 
   methods: {
-    queryData() {
-      axios.get("http://81.68.177.149:8080/userInfo/query").then((value) => {
-        console.log(value.data);
-        this.userList = value.data;
-      });
+   async queryData() {
+      let res = await axios.get("http://81.68.177.149:8080/userInfo/query");  
+      this.userList = res.data;
     },
     search() {
       //查询数据
