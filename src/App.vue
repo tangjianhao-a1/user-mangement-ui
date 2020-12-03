@@ -111,18 +111,18 @@ export default {
       let res = await axios.get("http://81.68.177.149:8080/userInfo/query");  
       this.userList = res.data;
     },
-    search() {
+   async search() {
       //查询数据
-      axios.get("http://81.68.177.149:8080/userInfo/query").then((value) => {
-        let list = value.data;
-        let a = list.filter((value) => {
+     let list = await axios.get("http://81.68.177.149:8080/userInfo/query");
+        let ret = list.data;
+        let a = ret.filter((value) => {
           if (this.queryName == null || this.queryName == "") {
             return true;
           }
           return value.username.includes(this.queryName);
         });
         this.userList = a;
-      });
+      
     },
 
     add() {
