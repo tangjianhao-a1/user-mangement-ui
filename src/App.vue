@@ -43,7 +43,9 @@
         <div class="layer_body_title">
           修改用户信息
           <span
-            ><a href="javascript:;" style="color: red" @click="layer = false">X</a></span
+            ><a href="javascript:;" style="color: red" @click="layer = false"
+              >X</a
+            ></span
           >
         </div>
 
@@ -107,46 +109,39 @@ export default {
   },
 
   methods: {
-   async queryData() {
-      let res = await axios.get("http://81.68.177.149:8080/userInfo/query");  
+    async queryData() {
+      let res = await axios.get("http://81.68.177.149:8080/userInfo/query");
       this.userList = res.data;
     },
-   async search() {
+    async search() {
       //查询数据
-     let list = await axios.get("http://81.68.177.149:8080/userInfo/query");
-        let ret = list.data;
-        let a = ret.filter((value) => {
-          if (this.queryName == null || this.queryName == "") {
-            return true;
-          }
-          return value.username.includes(this.queryName);
-        });
-        this.userList = a;
-      
+      let list = await axios.get("http://81.68.177.149:8080/userInfo/query");
+      let ret = list.data;
+      let a = ret.filter((value) => {
+        if (this.queryName == null || this.queryName == "") {
+          return true;
+        }
+        return value.username.includes(this.queryName);
+      });
+      this.userList = a;
     },
 
-    add() {
+    async add() {
       if (this.addObj.addName == "" || this.addObj.addName == null) return;
       if (this.addObj.addNotes == "" || this.addObj.addNotes == null) return;
-      axios
-        .post("http://81.68.177.149:8080/userInfo/add", {
-          username: this.addObj.addName,
-          noteInfo: this.addObj.addNotes,
-        })
-        .then(() => {
-          this.queryData();
-        });
+      await axios.post("http://81.68.177.149:8080/userInfo/add", {
+        username: this.addObj.addName,
+        noteInfo: this.addObj.addNotes,
+      });
+      this.queryData();
     },
 
-    del(id) {
+    async del(id) {
       if (!confirm("确定要删除吗")) {
         return;
       }
-      axios
-        .delete("http://81.68.177.149:8080/userInfo/delete?id=" + id)
-        .then(() => {
-          this.queryData();
-        });
+      await axios.delete("http://81.68.177.149:8080/userInfo/delete?id=" + id);
+      this.queryData();
     },
 
     edit(item) {
@@ -158,17 +153,14 @@ export default {
       };
     },
 
-    joinus() {
-      axios
-        .put("http://81.68.177.149:8080/userInfo/update", {
-          id: this.editObj.id,
-          username: this.editObj.useName,
-          noteInfo: this.editObj.useNotes,
-        })
-        .then(() => {
-          this.layer = false;
-          this.queryData();
-        });
+    async joinus() {
+      await axios.put("http://81.68.177.149:8080/userInfo/update", {
+        id: this.editObj.id,
+        username: this.editObj.useName,
+        noteInfo: this.editObj.useNotes,
+      });
+      this.layer = false;
+      this.queryData();
     },
   },
 };
