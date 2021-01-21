@@ -1,44 +1,19 @@
 <template>
   <div class="layer" v-if="value">
     <div class="layer-body">
-      <div class="layer-body-title">
-        添加用户
-        <span>
+        <div class="layer-body-title">
+        {{title}}
+        <span @click="$emit('input',false)">
           <a
             href="javascript:;"
             style="color: red"
-            @click="$emit('input', false)"
           >
             X
           </a></span
         >
       </div>
       <div class="layer-body-content">
-        <div class="layer-body-input">
-          <label>用户名：</label>
-          <input
-            type="text"
-            placeholder="请输入姓名(必填)"
-            class="list-input"
-            v-model="addUserFrom.username"
-          />
-        </div>
-
-        <!-- 弹出下输入框部分 -->
-        <div class="layer-body-input">
-          <label>用户备注:</label>
-          <input
-            type="text"
-            placeholder="请输入备注"
-            class="list-input"
-            v-model="addUserFrom.noteInfo"
-          />
-        </div>
-        <!-- 按钮操作部分 -->
-        <div class="layer-body-button">
-          <button>确定</button>
-          <button>取消</button>
-        </div>
+      <slot></slot>
       </div>
     </div>
   </div>
@@ -48,19 +23,17 @@
 export default {
   name: "Dialog",
   props: {
-    value: {
-      type: Boolean,
-      default: false,
-    },
+   value: {
+     type: Boolean,  
+     default: false
+   },
+   title: {
+     type: String,  
+   }
   },
-  data() {
-    return {
-      addUserFrom: {
-        username: "",
-        noteInfo: "",
-      },
-    };
-  },
+  components: {
+  }
+ 
 };
 </script>
 
