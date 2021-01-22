@@ -1,19 +1,14 @@
 <template>
   <div class="layer" v-if="value">
     <div class="layer-body">
-        <div class="layer-body-title">
-        {{title}}
-        <span @click="$emit('input',false)">
-          <a
-            href="javascript:;"
-            style="color: red"
-          >
-            X
-          </a></span
+      <div class="layer-body-title">
+        {{ title }}
+        <span @click="$emit('input', false)">
+          <a href="javascript:;" style="color: red"> X </a></span
         >
       </div>
       <div class="layer-body-content">
-      <slot></slot>
+        <slot></slot>
       </div>
     </div>
   </div>
@@ -23,17 +18,15 @@
 export default {
   name: "Dialog",
   props: {
-   value: {
-     type: Boolean,  
-     default: false
-   },
-   title: {
-     type: String,  
-   }
+    value: {
+      type: Boolean,
+      default: false,
+    },
+    title: {
+      type: String,
+    },
   },
-  components: {
-  }
- 
+  components: {},
 };
 </script>
 

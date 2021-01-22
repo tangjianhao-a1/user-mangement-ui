@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home">
     <div>
       <h2 class="table-head">用户管理</h2>
       <div class="table-input">
@@ -97,9 +97,9 @@
 <script>
 import requestPath from "@/netwock/requestPath";
 import stringVerify from "@/verification/stringVerify";
-import Dialog from "@/components/Dialog";
+import Dialog from "@/views/Dialog";
 export default {
-  name: "home",
+  name: "Home",
   data() {
     return {
       /* 输入框 */
