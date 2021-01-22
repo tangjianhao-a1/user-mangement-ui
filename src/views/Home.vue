@@ -226,6 +226,19 @@ export default {
 </script>
 
 <style>
+input,
+button {
+  outline: none;
+  cursor: pointer;
+  border: #ebebeb 1px solid;
+  height: 27px;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #ffffff;  
+  color: #7c7cad;
+}
 button:hover {
   background-color: #2eaed4;
 }
